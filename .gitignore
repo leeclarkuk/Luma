@@ -1,0 +1,24 @@
+# XcodeGen output
+*.xcodeproj
+*.xcworkspace
+xcuserdata/
+*.xcuserstate
+
+# Build
+DerivedData/
+build/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Swift PM
+.build/
+.swiftpm/
+
+# Misc
+.DS_Store
+*.swp
+*~
+
+# Test shots written outside the container
+shots/
