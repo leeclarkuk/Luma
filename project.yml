@@ -1,0 +1,74 @@
+name: Luma
+options:
+  bundleIdPrefix: uk.leeclark
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  defaultConfig: Debug
+  generateEmptyDirectories: true
+settings:
+  base:
+    SWIFT_VERSION: "5.9"
+    TARGETED_DEVICE_FAMILY: "1"
+    SUPPORTS_MACCATALYST: false
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: "1.0"
+targets:
+  Luma:
+    type: application
+    platform: iOS
+    sources:
+      - path: Luma/Sources
+      - path: Luma/Resources
+        buildPhase: resources
+        excludes:
+          - Info.plist
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: uk.leeclark.Luma
+        PRODUCT_NAME: Luma
+        INFOPLIST_FILE: Luma/Resources/Info.plist
+        GENERATE_INFOPLIST_FILE: false
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "1"
+        CODE_SIGN_STYLE: Automatic
+        SWIFT_EMIT_LOC_STRINGS: true
+        ENABLE_TESTABILITY: true
+  LumaTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - LumaTests
+    dependencies:
+      - target: Luma
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: uk.leeclark.LumaTests
+        GENERATE_INFOPLIST_FILE: true
+        CODE_SIGN_STYLE: Automatic
+  LumaUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - LumaUITests
+    dependencies:
+      - target: Luma
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: uk.leeclark.LumaUITests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_TARGET_NAME: Luma
+        CODE_SIGN_STYLE: Automatic
+schemes:
+  Luma:
+    build:
+      targets:
+        Luma: all
+        LumaTests: [test]
+        LumaUITests: [test]
+    test:
+      targets:
+        - LumaTests
+        - LumaUITests
+      gatherCoverageData: false
